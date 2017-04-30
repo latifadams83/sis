@@ -1,0 +1,46 @@
+<%= provide(:page_title, "Staff Departments")%>
+<%= provide(:staff_active, "activelink")%>
+
+<% content_for :page_actions do %>
+  <li class="fa fa-list left"> Staff Departments </li>
+  <li class="fa fa-plus  right btn medium green margin-right round-large" onclick="$('#newDepartment').show();">  Add</li>
+<% end %>
+
+<table class="table table-all">
+  <thead >
+    <tr class="light-gray">
+      <th>Staff Department</th>
+      <th>Staff Category</th>
+      <th class="centered">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody id="departmentTbody">
+    <%= render @staff_departments %>
+  </tbody>
+</table>
+
+<%= simple_form_for(@staff_department, url: super_staff_departments_path, method: :post, remote:true) do |f| %>
+  <div id="newDepartment" class="modal round">
+    <div class="modal-content card-8 animate-opacity round" style="max-width:600px">
+      <div class="container border-bottom  light-grey round">
+        <h4 class="left"><i class="fa fa-plus"></i>  New Staff Department</h4>
+      </div>
+      <div class="container">
+        <div class="row-padding margin-bottom">
+          <%= f.input :name, input_html: {class: "department_name"}%>
+        </div>
+
+        <div class="row-padding margin-bottom">
+          <%= f.association :staff_category, input_html: {class: "department_category"}%>
+          <%= f.input :created_by, :as => :hidden, :input_html => {:value => "#{current_user.id}" }%>
+        </div>
+      </div>
+
+      <div class="container border-top padding light-grey margin-top">
+        <%= f.button :submit, "Create",  class: "btn theme-d4 round left tiny margin-bottom " %>
+        <button onclick="$('#newDepartment').hide();" type="button" class="btn red tiny right round">Cancel</button>
+      </div>
+    </div>
+  </div>
+<% end %>

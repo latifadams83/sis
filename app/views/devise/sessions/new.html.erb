@@ -1,0 +1,45 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <br><br><br><br><br>
+  <div class=" white round card-4 margin-top medium" style="width:500px; position: relative; margin: auto;">
+
+      <div class="center border-bottom"><br>
+
+        <img src="" alt="Logo" style="width:30%" class="circle margin-top">
+
+      </div>
+        <br>
+        <div>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+        </div>
+        <div class="panel section">
+          <div class="row-padding margin-bottom">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, class: "input border"%>
+          </div>
+
+          <div class="row-padding margin-bottom">
+          <%= f.label :password ,class: "label"%>
+          <%= f.password_field :password, autocomplete: "off", class: "input border"%>
+          </div>
+
+          <div class="row-padding">
+            <%= f.submit "Log In", class: "button block green hover-green section padding" %>
+          </div>
+
+          <div class="row-padding">
+            <% if devise_mapping.rememberable? -%>
+              <%= f.check_box :remember_me, class: "check margin-top" %>
+              <%= f.label :remember_me %>
+          <% end %>
+          </div>
+        </div>
+
+      <div class="container border-top padding-8 light-grey">
+        <%= render "devise/shared/links" %>
+      </div>
+
+    </div>
+  
+<% end %>
+ 

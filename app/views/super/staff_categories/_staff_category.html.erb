@@ -1,0 +1,48 @@
+<tr id="categoryRow_<%= staff_category.id%>">
+  <td><%= staff_category.name %></td>
+  <td class="center">
+    <%= link_to '', super_staff_category_path(staff_category), {class: "fa fa-eye theme-action tiny btn round-large"} %>
+    <%= link_to '', "javascript:void();", {class: "fa fa-pencil amber tiny btn round-large", onclick: "$('#updateCategory_#{staff_category.id}').show();"} %>
+    <%= link_to '', "javascript:void();" ,class: "fa fa-trash red round-large tiny btn", onclick: "$('#deleteCategory_#{staff_category.id}').show();" %>
+
+  <%= form_for(staff_category, url: super_staff_category_path(staff_category), method: :put, remote: true) do |f| %>
+    <div id="updateCategory_<%=staff_category.id%>" class="modal round">
+      <div class="modal-content card-8 animate-opacity round" style="max-width:600px">
+        <div class="container border-bottom  light-grey round">
+          <h4 class="left"><i class="fa fa-pencil"></i>  Edit Staff Category</h4>
+        </div>
+          <div class="container">
+            <div class="row-padding margin-top">
+              <%= f.label :name, class: "label left" %>
+              <%= f.text_field :name, class: "category_name input border round", required: true%>
+              <%= f.hidden_field :updated_by, :value => current_user.id %>
+            </div>
+          </div>
+        <div class="container border-top padding light-grey margin-top">
+          <%= f.submit :Update,  class: "btn theme-d4 round left tiny margin-bottom " %>
+          <button onclick="$('#updateCategory_<%=staff_category.id%>').hide();" type="button" class="btn red tiny right round">Cancel</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_for(staff_category, url: super_staff_category_path(staff_category), method: :delete, remote: true) do |f| %>
+  <div id="deleteCategory_<%=staff_category.id%>" class="modal round">
+    <div class="modal-content card-8 animate-opacity round" style="max-width:600px">
+      <div class="container border-bottom  light-grey round">
+        <h4 class="left"><i class="fa fa-trash"></i>  Remove Staff Category</h4>
+      </div>
+        <div class="container">
+          <div class="row-padding margin-top">
+            <p>Are you sure, you want Remove this Category?</p>
+          </div>
+        </div>
+      <div class="container border-top padding light-grey margin-top">
+        <%= f.submit :Remove,  class: "btn theme-d4 round left tiny margin-bottom " %>
+        <button onclick="$('#deleteCategory_<%=staff_category.id%>').hide();" type="button" class="btn red tiny right round">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  </td>
+</tr>

@@ -6,10 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# #User roles
+# ['super_admin', 'admin', 'admin_assistant', 'teaching', 'clerk', 'senior_clerk'].each do |role|
+#   Role.find_or_create_by({name: role})
+# end
+#
 
-
-
-#User roles
-['super_admin', 'admin', 'admin_assistant', 'teaching', 'clerk', 'senior_clerk'].each do |role|
-  Role.find_or_create_by({name: role})
+User::ROLES.each do |r|
+  User.create({email: "#{r}@example.com", password: "#{r}@password", role: "#{r}"})
 end

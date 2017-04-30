@@ -1,0 +1,14 @@
+<%= simple_form_for(staff_department, url: url) do |f| %>
+
+  <div class="row-padding margin-bottom">
+    <%= f.input :name, hint: "name of Department" %>
+  </div>
+
+  <div class="row-padding margin-bottom">
+    <%= f.association :staff_category %>
+  </div>
+
+  <div class="row-padding margin-bottom">
+    <%= f.button :submit, "Create"%>
+  </div>
+<% end %>

@@ -11,6 +11,36 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require staffs
+//= require_self
+
+
+// Add Datepicker to textfields
+$(function() {
+  $('.datepicker').datepicker({ dateFormat: 'yy-mm-dd'});
+
+});
+
+
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+var overlayBg = document.getElementById("myOverlay");
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function open_sidebar() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function close_sidebar() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}

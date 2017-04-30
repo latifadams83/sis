@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SIS | <%= yield :page_title %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="light-grey light theme-light">
+
+   <!-- Top container -->
+	<div class="bar top white large" style="z-index:4">
+	  <button class="bar-item button hide-large hover-none" onclick="open_sidebar();"><i class="fa fa-bars"></i>  Menu</button>
+	  <span class="bar-item left hide-medium" style="width: 280px; background:black; color: white;">Logo</span>
+	</div>
+
+	<!-- Sidebar/menu -->
+	<nav class="sidebar collapse black" style="z-index:3;width:280px;" id="mySidebar"><br>
+	  <div class="container row">
+	    <div class="col s4">
+	    </div>
+	    <div class="col s8 bar">
+	      <span>Welcome, <strong>Admin</strong></span><br>
+	    </div>
+	  </div>
+	  <hr>
+	    <h5>Dashboard</h5>
+
+	  <div class="bar-block">
+	    <a href="#" class="bar-item button padding-16 hide-large dark-grey hover-black" onclick="close_sidebar()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+
+	</nav>
+	<!-- Overlay effect when opening sidebar on small screens -->
+	<div class="overlay hide-large animate-opacity" onclick="close_sidebar()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+	<div class="main" style="margin-left:300px;margin-top:43px;">
+    <br>
+    <div class="container padding margin-right large">
+      <%= yield :page_actions %>
+    </div>
+    <div class="content white topbar round padding-right padding-left">
+      <%= yield %>
+    </div>
+
+	  <!-- Footer -->
+	  <footer class="container padding-16 light-grey small">
+	    Copyright &copy <%= Time.now.year() %>
+	  </footer>
+
+	  <!-- End page content -->
+	</div>
+
+  </body>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</html>

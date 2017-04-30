@@ -1,0 +1,40 @@
+<%= simple_form_for(@emp_info, defaults: { wrapper_html: { class: 'row-padding' }}, url:create_employment_super_staff_path) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="bar light-gray row">
+      <button type="button" name="button" class="bar-item border light-grey col m3">
+        <span ><span class="badge">1</span>&nbsp;&nbsp; Personal Details&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span>
+       </button>
+
+      <button type="button" name="button" class="bar-item border light-grey col m3">
+        <span class="text-theme"><span class="badge green">2</span>&nbsp;&nbsp; Employment Details&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span>
+      </button>
+      <button type="button" name="button" class="bar-item border light-grey col m3">
+        <span class="badge">2</span>&nbsp;&nbsp; Qualifications&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+      </button>
+
+      <button type="button" name="button" class="bar-item border light-grey col m3">
+        <span class="badge">3</span>&nbsp;&nbsp; Contact Details&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+      </button>
+  </div>
+  <div class="form-inputs container border">
+    <%= f.input :appointment_date, as: :string,label_html:{class: "col m3"}, input_html: {class: "col m9 datepicker"} %>
+    <%= f.input :employment_id, input_html: {class: "col m9"}, label_html: {class: "col m3"}%>
+    <%= f.input :registered_no, label_html:{class: "col m3"}, input_html: {class: "col m9"} %>
+    <%= f.input :job_title, label_html:{class:"col m3"}, input_html:{class: "col m9"}%>
+    <%= f.input :job_description, label_html:{class:"col m3"}, input_html:{class: "col m9"} %>
+    <%= f.input :rank, label_html:{class: "col m3"}, input_html: {class: "col m9 auto_complete"} %>
+    <%= f.input :sssnit_no, label_html:{class: "col m3"}, input_html: {class: "col m9"} %>
+
+    <% if @emp_info.new_record? %>
+      <%= f.input :created_by, :as => :hidden, :input_html => {:value => "#{current_user.id}" } %>
+      <% else %>
+      <%= f.input :updated_by, :as => :hidden, :input_html => {:value => "#{current_user.id}" } %>
+    <% end %>
+
+    <div class="form-actions row-padding margin">
+      <div class="right"><%= f.button :submit, "Save & Continue" %></div>
+
+    </div>
+<% end %>
+</div>

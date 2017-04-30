@@ -1,0 +1,31 @@
+.simple_form{
+
+  div.input{
+    border:none !important; margin-bottom:20px; margin-top:20px;
+    label{
+      text-align: right; border:none;margin-right:16px;
+    }
+    select{max-width: 300px;}
+    input.string{
+      padding:1px;border:1px solid #ccc;max-width:300px;
+    }
+
+    input.select{max-width: 300px;}
+
+  }
+
+
+  @media (max-width:600px){label {text-align:left !important;}}
+
+
+  label.radio_buttons{
+    border:none !important; text-align:right;
+  }
+
+
+  span.radio{label{margin-right: 20px;}}
+  .alert-error{color:#DOO; margin-bottom:10px; font-weight:bold;}
+  .error{color:red;font-size:0.8em;}
+  .hint{color: #555; font-style: italic; font-size:0.8em;}
+  .required{abbr{color:red; text-decoration: none}}
+}

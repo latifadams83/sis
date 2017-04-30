@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @staff.title %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @staff.first_name %>
+</p>
+
+<p>
+  <strong>Middle name:</strong>
+  <%= @staff.middle_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @staff.last_name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @staff.gender %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @staff.date_of_birth %>
+</p>
+
+<p>
+  <strong>Religious denomination:</strong>
+  <%= @staff.religious_denomination %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @staff.image %>
+</p>
+
+<p>
+  <strong>Disability:</strong>
+  <%= @staff.disability %>
+</p>
+
+<p>
+  <strong>Disability desc:</strong>
+  <%= @staff.disability_desc %>
+</p>
+
+<p>
+  <strong>Date join:</strong>
+  <%= @staff.date_join %>
+</p>
+
+<p>
+  <strong>Appointment date:</strong>
+  <%= @staff.appointment_date %>
+</p>
+
+<p>
+  <strong>Sssnit no:</strong>
+  <%= @staff.sssnit_no %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @staff.rank %>
+</p>
+
+<p>
+  <strong>Registered no:</strong>
+  <%= @staff.registered_no %>
+</p>
+
+<p>
+  <strong>Employee:</strong>
+  <%= @staff.employee_id %>
+</p>
+
+<p>
+  <strong>Staff category:</strong>
+  <%= @staff.staff_category %>
+</p>
+
+<p>
+  <strong>Staff department:</strong>
+  <%= @staff.staff_department %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @staff.user.email %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @staff.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_super_staff_path(@staff) %> |
+<%= link_to 'Back', super_staffs_path %>

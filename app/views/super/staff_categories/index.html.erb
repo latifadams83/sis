@@ -1,0 +1,41 @@
+<%= provide(:page_title, "Staff Categories")%>
+<%= provide(:staff_active, "activelink")%>
+
+<% content_for :page_actions do %>
+  <li class="fa fa-list left"> Staff Categories </li>
+  <li class="fa fa-plus  right btn medium green margin-right round-large" onclick="$('#newCategory').show();">  Add</li>
+<% end %>
+
+<table class="table-all">
+  <thead >
+    <tr class=" light-gray">
+      <th>Category</th>
+      <th class="center"> Actions</th>
+    </tr>
+  </thead>
+
+  <tbody id="categoryTbody">
+    <%= render @staff_categories %>
+  </tbody>
+</table>
+
+ <%= form_for(@staff_category, url: super_staff_categories_path, method: :post, remote: true) do |f| %>
+   <div id="newCategory" class="modal round">
+     <div class="modal-content card-8 animate-opacity round" style="max-width:600px">
+       <div class="container border-bottom  light-grey round">
+         <h4 class="left"><i class="fa fa-plus"></i>  New Staff Category</h4>
+       </div>
+         <div class="container">
+           <div class="row-padding margin-top">
+             <%= f.label :name, class: "label" %>
+             <%= f.text_field :name, class: "category_name input border round", required: true%>
+             <%= f.hidden_field :created_by, :value => current_user.id %>
+           </div>
+         </div>
+       <div class="container border-top padding light-grey margin-top">
+         <%= f.submit :Submit,  class: "btn theme-d4 round left tiny margin-bottom " %>
+         <button onclick="$('#newCategory').hide();" type="button" class="btn red tiny right round">Cancel</button>
+       </div>
+     </div>
+   </div>
+ <% end %>

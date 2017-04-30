@@ -1,0 +1,32 @@
+<%= provide(:page_title, "Staff Category Details")%>
+<%= provide(:staff_active, "activelink")%>
+
+<% content_for :page_actions do %>
+  <li class="fa fa-eye left"> Staff Category Details </li>
+  <%= link_to " Back", super_staff_categories_path, class: "fa fa-chevron-left  right btn medium green margin-right round-large"%>
+<% end %>
+
+<table class="table striped bordered">
+  <tr>
+    <td class="">Name:</td>
+    <td><%= @staff_category.name.humanize%></td>
+  </tr>
+  <tr>
+    <td class="">Created At:</td>
+    <td><%= @staff_category.created_at.strftime("%Y-%m-%d, %H:%M:%S")%></td>
+  </tr>
+  <tr>
+    <td class="">Updated At:</td>
+    <td><%= @staff_category.updated_at.strftime("%Y-%m-%d, %H:%M:%S")%></td>
+  </tr>
+  <tr>
+    <td class="">Created By:</td>
+    <td><%= User.find_by_id(@staff_category.created_by).email%></td>
+  </tr>
+  <% if @staff_category.updated_by.present?%>
+    <tr>
+      <td class="">Updated By:</td>
+      <td><%= User.find_by_id(@staff_category.updated_by).email%></td>
+    </tr>
+  <% end %>
+</table>

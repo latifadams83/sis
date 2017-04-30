@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Staffs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>First name</th>
+      <th>Middle name</th>
+      <th>Last name</th>
+      <th>Gender</th>
+      <th>Date of birth</th>
+      <th>Religious denomination</th>
+      <th>Image</th>
+      <th>Disability</th>
+      <th>Disability desc</th>
+      <th>Date join</th>
+      <th>Appointment date</th>
+      <th>Sssnit no</th>
+      <th>Rank</th>
+      <th>Registered no</th>
+      <th>Employee</th>
+      <th>Staff category</th>
+      <th>Staff department</th>
+      <th>User</th>
+      <th>Is active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= staff.title %></td>
+        <td><%= staff.first_name %></td>
+        <td><%= staff.middle_name %></td>
+        <td><%= staff.last_name %></td>
+        <td><%= staff.gender %></td>
+        <td><%= staff.date_of_birth %></td>
+        <td><%= staff.religious_denomination %></td>
+        <td><%= staff.image %></td>
+        <td><%= staff.disability %></td>
+        <td><%= staff.disability_desc %></td>
+        <td><%= staff.date_join %></td>
+        <td><%= staff.appointment_date %></td>
+        <td><%= staff.sssnit_no %></td>
+        <td><%= staff.rank %></td>
+        <td><%= staff.registered_no %></td>
+        <td><%= staff.employee_id %></td>
+        <td><%= staff.staff_category %></td>
+        <td><%= staff.staff_department %></td>
+        <td><%= staff.user %></td>
+        <td><%= staff.is_active %></td>
+        <td><%= link_to 'Show', super_staff_path(staff) %></td>
+        <td><%= link_to 'Edit', edit_super_staff_path(staff) %></td>
+        <td><%= link_to 'Destroy', super_staff_path(staff), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Staff', new_super_staff_path %>

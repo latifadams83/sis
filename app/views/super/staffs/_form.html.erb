@@ -1,0 +1,68 @@
+<%= simple_form_for(@staff,defaults: { wrapper_html: { class: 'row-padding' } }, url: url, :html => { :multipart => true }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="bar light-gray row ">
+      <button type="button" name="button" class="bar-item border light-grey col m4">
+        <span class="text-theme"><span class="badge green">1</span>&nbsp;&nbsp; Demographic Details&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></span>
+       </button>
+
+      <button type="button" name="button" class="bar-item border light-grey col m4">
+        <span class="badge">2</span>&nbsp;&nbsp; Qualifications &nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+      </button>
+
+      <button type="button" name="button" class="bar-item border light-grey col m4">
+        <span class="badge">3</span>&nbsp;&nbsp; Contact Details&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+      </button>
+  </div>
+  <div class="form-inputs container border">
+    <%= link_to "Personal Details", "javascript:void();", onclick: "$('#personalDetails').slideToggle();", class:"button block left-align theme margin-top" %>
+    <div class="border" id="personalDetails">
+      <%= f.input :title, collection: ["Mr.", "Mrs.", "Ms.", "Master", "Dr.", "Prof", "Mallam", "Maulvi", "Alhaj", "Hajia" "Sheik", "Pastor", "Reverend", "Father"], label: "Salutation", label_html:{class: "col m3"}, input_html:{class: "col m9"} %>
+      <%= f.input :first_name, input_html: {class: "col m9"}, label_html: {class: "col m3"}%>
+      <%= f.input :middle_name, label_html:{class:"col m3"}, input_html:{class: "col m9"}%>
+      <%= f.input :last_name, label_html:{class:"col m3"}, input_html:{class: "col m9"} %>
+      <%= f.input :gender, as: :radio_buttons, collection: ["Male", "Female"],label_html: {class: "col m3"}%>
+      <%= f.input :date_of_birth, as: :string, label_html:{class:"col m3"}, input_html:{class: "col m10 datepicker"} %>
+      <%= f.input :religious_denomination, label_html:{class: "col m3"}, input_html: {class: "col m9 auto_complete"} %>
+      <%= f.input :image, as: :file, label_html:{class: "col m3"} %>
+      <%= f.input :disability, collection: [["No", 0], ["Yes", 1]], label_html: {class: "col m3"},input_html:{class:"col m9", selected: 0} ,include_blank:false%>
+      <%= f.input :disability_desc, label: "Disability description", label_html:{class: "col m3"}, input_html: {class: "col m9"}, wrapper_html:{class: "hide row-padding"} %>
+    </div>
+    <%= link_to "Employment Details", "javascript:void();", onclick: "$('#employmentDetails').slideToggle();", class:"button block left-align theme margin-top" %>
+    <div class="border" id="employmentDetails">
+      <%= f.input :date_join, as: :string,label_html:{class: "col m3"}, input_html: {class: "col m9 datepicker"} %>
+      <%= f.association :staff_category, label_html: {class: "col m3"}, input_html:{class: "col m9"}%>
+      <%= f.input :staff_department_id, collection: @categories, as: :grouped_select, group_method: :staff_departments, label_html: {class: "col m3"}, input_html:{class: "select col m9"}%>
+      <%= f.input :appointment_date, as: :string,label_html:{class: "col m3"}, input_html: {class: "col m9 datepicker"} %>
+      <%= f.input :employment_id, label: "Staff ID", input_html: {class: "col m9"}, label_html: {class: "col m3"}%>
+      <%= f.input :registered_no, label_html:{class: "col m3"}, input_html: {class: "col m9"} %>
+      <%= f.input :rank, label_html:{class: "col m3"}, input_html: {class: "col m9 auto_complete"} %>
+      <%= f.input :sssnit_no, label: "Social security No",label_html:{class: "col m3"}, input_html: {class: "col m9"} %>
+      <%= f.input :portal_access, collection: [["No", 0], ["Yes", 1]], label_html: {class: "col m3"},input_html:{class:"col m9"} ,include_blank:false%>
+
+      <div class="hide" id="userDetails">
+        <div class="input row-padding portal">
+          <%= label_tag :email, "Email", class: 'col m3'%>
+          <%= email_field_tag :email,"", {class: "string col m9"} %>
+        </div>
+        <div class="input row-padding portal">
+          <%= label_tag :password, "Password", class: 'col m3'%>
+          <%= password_field_tag :password,"", {class: "string col m9"} %>
+        </div>
+        <div class="input row-padding portal">
+          <%= label_tag :role, "Password", class: 'col m3'%>
+          <%= select_tag :role, options_from_collection_for_select(User::ROLES, :to_s, :humanize),{class: "select col m9", include_blank:true}%>
+        </div>
+      </div>
+    </div>
+
+    <% if @staff.new_record? %>
+      <%= f.input :created_by, :as => :hidden, :input_html => {:value => "#{current_user.id}" } %>
+      <% else %>
+        <%= f.input :updated_by, :as => :hidden, :input_html => {:value => "#{current_user.id}" } %>
+    <% end %>
+
+    <div class="form-actions row-padding margin">
+      <div class="right"><%= f.button :submit, "Save & Continue" %></div>
+
+<% end %>
